@@ -13,9 +13,8 @@ class SodiumEncrypter extends BaseEncrypter implements EncrypterContract
      * Create a new encrypter instance.
      *
      * @param  string $key
-     * @param  string $cipher
      */
-    public function __construct($key, $cipher = null)
+    public function __construct($key)
     {
         $this->key = $key;
     }
