@@ -195,7 +195,7 @@ class SodiumLibrary
         $nonce = self::entropy();
 
         # Encrypt the message
-        $messageEncrypted = Sodium\crypto_secretbox($message, $nonce, self::hash($key));
+        $messageEncrypted = Sodium\crypto_secretbox($message, $nonce, self::rawHash($key, null, Sodium\CRYPTO_SECRETBOX_KEYBYTES));
 
         return sprintf('%s.%s', self::bin2hex($nonce), self::bin2hex($messageEncrypted));
     }
@@ -214,11 +214,13 @@ class SodiumLibrary
         $decryption = Sodium\crypto_secretbox_open(
             Sodium\hex2bin($payload[1]),
             Sodium\hex2bin($payload[0]),
-            self::hash($key)
+            self::rawHash($key, null, Sodium\CRYPTO_SECRETBOX_KEYBYTES)
         );
 
         if (!$decryption) {
             throw new DecryptionException('The key provided cannot decrypt the message');
         }
+
+        return $decryption;
     }
 }
