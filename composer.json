@@ -1,0 +1,31 @@
+{
+    "name": "scrothers/libsodium-laravel",
+    "description": "Laravel bindings for libsodium in the encrypter and hasher",
+    "type": "library",
+    "homepage": "https://github.com/scrothers/libsodium-laravel",
+    "require": {
+        "php": ">=5.5.9",
+        "ext-libsodium": "*",
+        "illuminate/contracts": "5.1.*",
+        "illuminate/encryption": "5.1.*"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "~4.0"
+    },
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Steven Crothers",
+            "email": "steven.crothers@gmail.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "scrothers\\laravelsodium\\": "src/"
+        }
+    },
+    "support": {
+        "issues": "https://github.com/scrothers/libsodium-laravel/issues",
+        "source": "https://github.com/scrothers/libsodium-laravel"
+    }
+}
