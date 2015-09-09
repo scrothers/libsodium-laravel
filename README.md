@@ -1,5 +1,4 @@
 # Libsodium for Laravel
---
 This library is meant to be a fairly expansive encryption replacement to Laravel's built in methods. The goals is that by default it will replace the encryption and the hashing mechanisms of Laravel with compatible methods powered by libsodium.
 
 ## How to Install
