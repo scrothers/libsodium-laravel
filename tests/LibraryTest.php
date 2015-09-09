@@ -23,4 +23,26 @@ class LibraryTest extends PHPUnit_Framework_TestCase
     {
         SodiumLibrary::rawHash('foo', null, 1);
     }
+
+    /**
+     * @requires extension libsodium
+     */
+    public function testSodiumPubPrivMessageEncryption()
+    {
+        $Adam = SodiumLibrary::genBoxKeypair();
+        $Eve = SodiumLibrary::genBoxKeypair();
+        $encryptedMessage = SodiumLibrary::messageSendEncrypt($Adam['pub'], $Eve['pri'], 'message');
+        $this->assertEquals('message', SodiumLibrary::messageReceiveEncrypt($Adam['pri'], $Eve['pub'], $encryptedMessage));
+    }
+
+    /**
+     * @requires extension libsodium
+     */
+    public function testSodiumMessageSigning()
+    {
+        $Adam = SodiumLibrary::genSignKeypair();
+        $Eve = SodiumLibrary::genSignKeypair();
+        $signedMessage = SodiumLibrary::signMessage($Adam['pri'], 'message');
+        $this->assertEquals('message', SodiumLibrary::verifySignature($Adam['pub'], $signedMessage));
+    }
 }
