@@ -1,19 +1,19 @@
 <?php
 
-
 namespace scrothers\laravelsodium;
 
-use Sodium;
 use scrothers\laravelsodium\Exceptions\DecryptionException;
 use scrothers\laravelsodium\Exceptions\HashLengthException;
 use scrothers\laravelsodium\Exceptions\KeyTypeException;
+use Sodium;
 
 class SodiumLibrary
 {
     /**
-     * Return an amount of binary entropy
+     * Return an amount of binary entropy.
      *
      * @param int $amount The amount of entropy you want to generate
+     *
      * @return string
      */
     public static function entropy($amount = Sodium\CRYPTO_SECRETBOX_NONCEBYTES)
@@ -22,9 +22,10 @@ class SodiumLibrary
     }
 
     /**
-     * Return a hexadecimal string from binary
+     * Return a hexadecimal string from binary.
      *
      * @param string $hexString The hexadecimal string being converted to binary
+     *
      * @return string
      */
     public static function bin2hex($hexString)
@@ -33,10 +34,11 @@ class SodiumLibrary
     }
 
     /**
-     * Return a binary string from hexadecimal
+     * Return a binary string from hexadecimal.
      *
      * @param string $binString The binary string being converted to hexadecimal
      * @param string $ignore Characters to ignore in the hexadecimal string
+     *
      * @return string
      */
     public static function hex2bin($binString, $ignore = '')
@@ -45,9 +47,10 @@ class SodiumLibrary
     }
 
     /**
-     * Wipe a variable from PHP's memory
+     * Wipe a variable from PHP's memory.
      *
      * @param $variable
+     *
      * @return void
      */
     public static function wipeMemory($variable)
@@ -56,11 +59,12 @@ class SodiumLibrary
     }
 
     /**
-     * The raw hash method simply hashes a string with specific options with Sodium
+     * The raw hash method simply hashes a string with specific options with Sodium.
      *
      * @param string $data The message to be hashed
      * @param string $key The key to hash the data to
      * @param int $length The length of the cache to be returned
+     *
      * @return string
      */
     public static function rawHash($data, $key = null, $length = Sodium\CRYPTO_GENERICHASH_BYTES)
@@ -86,9 +90,10 @@ class SodiumLibrary
     }
 
     /**
-     * A drop in replacement for md5() hashing
+     * A drop in replacement for md5() hashing.
      *
      * @param string $data The data to be hashed
+     *
      * @return string
      */
     public static function hash($data)
@@ -97,9 +102,10 @@ class SodiumLibrary
     }
 
     /**
-     * A longer more secure hash with less chance of collision
+     * A longer more secure hash with less chance of collision.
      *
      * @param string $data The data to be hashed
+     *
      * @return string
      */
     public static function secureHash($data)
@@ -108,9 +114,10 @@ class SodiumLibrary
     }
 
     /**
-     * A very long hash which is designed to be very unique with the least chance of collision
+     * A very long hash which is designed to be very unique with the least chance of collision.
      *
      * @param string $data The data to be hashed
+     *
      * @return string
      */
     public static function veryUniqueHash($data)
@@ -119,11 +126,12 @@ class SodiumLibrary
     }
 
     /**
-     * The keyedHash method hashes a message with a key for salt, requiring verification to know the key
+     * The keyedHash method hashes a message with a key for salt, requiring verification to know the key.
      *
      * @param string $data The data to be hashed
      * @param string $key The key to hash the data against
-     * @param int $length The length of the hash to generate, defaults to Sodium\CRYPTO_GENERICHASH_BYTES
+     * @param int    $length The length of the hash to generate, defaults to Sodium\CRYPTO_GENERICHASH_BYTES
+     *
      * @return string
      */
     public static function keyedHash($data, $key, $length = Sodium\CRYPTO_GENERICHASH_BYTES)
@@ -137,10 +145,11 @@ class SodiumLibrary
     }
 
     /**
-     * Hash a password using Sodium for later verification, optionally add slowness
+     * Hash a password using Sodium for later verification, optionally add slowness.
      *
      * @param string $plaintext The plaintext password to be hashed
      * @param bool|false $extraSecure Add additional slowness to the hashing technique for security
+     *
      * @return string
      */
     public static function hashPassword($plaintext, $extraSecure = false)
@@ -164,10 +173,11 @@ class SodiumLibrary
     }
 
     /**
-     * Verify if a password is correct by matching a plaintext password to a hash
+     * Verify if a password is correct by matching a plaintext password to a hash.
      *
      * @param string $password
      * @param string $hash
+     *
      * @return bool
      */
     public static function checkPassword($password, $hash)
@@ -183,10 +193,11 @@ class SodiumLibrary
     }
 
     /**
-     * Encrypt a message using a key
+     * Encrypt a message using a key.
      *
      * @param string $message A message in string format
      * @param string $key A binary hashed key
+     *
      * @return string
      */
     public static function encrypt($message, $key)
@@ -201,10 +212,11 @@ class SodiumLibrary
     }
 
     /**
-     * Decrypt a message using a key
+     * Decrypt a message using a key.
      *
      * @param string $message
      * @param string $key
+     *
      * @return mixed
      */
     public static function decrypt($message, $key)

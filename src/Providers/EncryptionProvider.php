@@ -1,10 +1,9 @@
 <?php
 
-
 namespace scrothers\laravelsodium\Providers;
 
-use scrothers\laravelsodium\SodiumEncrypter;
 use Illuminate\Support\ServiceProvider;
+use scrothers\laravelsodium\SodiumEncrypter;
 
 class EncryptionProvider extends ServiceProvider
 {

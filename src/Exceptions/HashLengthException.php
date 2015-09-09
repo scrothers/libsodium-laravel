@@ -7,5 +7,4 @@ use RuntimeException;
 
 class HashLengthException extends RuntimeException
 {
-
 }

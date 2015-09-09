@@ -1,7 +1,7 @@
 <?php
 
-use scrothers\laravelsodium\SodiumLibrary;
 use scrothers\laravelsodium\SodiumEncrypter;
+use scrothers\laravelsodium\SodiumLibrary;
 
 class EncrypterTest extends PHPUnit_Framework_TestCase
 {

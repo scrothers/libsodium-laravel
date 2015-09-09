@@ -7,5 +7,4 @@ use RuntimeException;
 
 class KeyTypeException extends RuntimeException
 {
-
 }

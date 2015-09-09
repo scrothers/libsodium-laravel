@@ -1,6 +1,5 @@
 <?php
 
-
 namespace scrothers\laravelsodium\Providers;
 
 use Illuminate\Support\ServiceProvider;

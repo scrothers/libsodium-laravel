@@ -10,8 +10,8 @@ class SodiumHasher implements HasherContract
     /**
      * Check if the given hash has been hashed using the given options.
      *
-     * @param  string  $unusedHashedValue
-     * @param  array   $unusedOptions
+     * @param string $unusedHashedValue
+     * @param array $unusedOptions
      * @return bool
      */
     public function needsRehash($unusedHashedValue, array $unusedOptions = [])
@@ -21,11 +21,13 @@ class SodiumHasher implements HasherContract
     /**
      * Hash the given value.
      *
-     * @param  string  $value
-     * @param  array   $options
+     * @param string $value
+     * @param array $options
      * @return string
      *
      * @throws \RuntimeException
+     *
+     * @return string
      */
     public function make($value, array $options = [])
     {
@@ -45,9 +47,10 @@ class SodiumHasher implements HasherContract
     /**
      * Check the given plain value against a hash.
      *
-     * @param  string  $value
-     * @param  string  $hashedValue
-     * @param  array   $unusedOptions Options are not used for Sodium password verification
+     * @param string $value
+     * @param string $hashedValue
+     * @param array $unusedOptions Options are not used for Sodium password verification
+     *
      * @return bool
      */
     public function check($value, $hashedValue, array $unusedOptions = [])
