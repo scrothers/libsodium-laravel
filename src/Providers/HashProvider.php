@@ -14,6 +14,7 @@ class HashProvider extends ServiceProvider
      * @var bool
      */
     protected $defer = true;
+
     /**
      * Register the service provider.
      *
@@ -23,6 +24,7 @@ class HashProvider extends ServiceProvider
     {
         $this->app->singleton('hash', function () { return new SodiumHasher(); });
     }
+
     /**
      * Get the services provided by the provider.
      *

@@ -22,4 +22,14 @@ class EncryptionProvider extends ServiceProvider
             return new SodiumEncrypter($key);
         });
     }
+
+    /**
+     * Get the services provided by the provider.
+     *
+     * @return array
+     */
+    public function provides()
+    {
+        return ['encrypter'];
+    }
 }
