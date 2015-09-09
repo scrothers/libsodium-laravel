@@ -63,7 +63,7 @@ class SodiumLibrary
      * @param int $length The length of the cache to be returned
      * @return string
      */
-    private static function rawHash($data, $key = null, $length = Sodium\CRYPTO_GENERICHASH_BYTES)
+    public static function rawHash($data, $key = null, $length = Sodium\CRYPTO_GENERICHASH_BYTES)
     {
         # Test to make sure the length is within bounds
         if (!($length >= Sodium\CRYPTO_GENERICHASH_BYTES_MIN && $length <= Sodium\CRYPTO_GENERICHASH_BYTES_MAX)) {
