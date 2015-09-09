@@ -21,6 +21,7 @@ class SodiumEncrypter extends BaseEncrypter implements EncrypterContract
      * Encrypt the given value.
      *
      * @param string $value
+     *
      * @return string
      */
     public function encrypt($value)
@@ -32,6 +33,7 @@ class SodiumEncrypter extends BaseEncrypter implements EncrypterContract
      * Decrypt the given value.
      *
      * @param string $payload
+     *
      * @return string
      */
     public function decrypt($payload)

@@ -1,6 +1,5 @@
 <?php
 
-
 namespace scrothers\laravelsodium\Exceptions;
 
 use RuntimeException;

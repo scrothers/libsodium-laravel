@@ -37,7 +37,7 @@ class SodiumLibrary
      * Return a binary string from hexadecimal.
      *
      * @param string $binString The binary string being converted to hexadecimal
-     * @param string $ignore Characters to ignore in the hexadecimal string
+     * @param string $ignore    Characters to ignore in the hexadecimal string
      *
      * @return string
      */
@@ -61,9 +61,9 @@ class SodiumLibrary
     /**
      * The raw hash method simply hashes a string with specific options with Sodium.
      *
-     * @param string $data The message to be hashed
-     * @param string $key The key to hash the data to
-     * @param int $length The length of the cache to be returned
+     * @param string $data   The message to be hashed
+     * @param string $key    The key to hash the data to
+     * @param int    $length The length of the cache to be returned
      *
      * @return string
      */
@@ -128,8 +128,8 @@ class SodiumLibrary
     /**
      * The keyedHash method hashes a message with a key for salt, requiring verification to know the key.
      *
-     * @param string $data The data to be hashed
-     * @param string $key The key to hash the data against
+     * @param string $data   The data to be hashed
+     * @param string $key    The key to hash the data against
      * @param int    $length The length of the hash to generate, defaults to Sodium\CRYPTO_GENERICHASH_BYTES
      *
      * @return string
@@ -147,7 +147,7 @@ class SodiumLibrary
     /**
      * Hash a password using Sodium for later verification, optionally add slowness.
      *
-     * @param string $plaintext The plaintext password to be hashed
+     * @param string     $plaintext   The plaintext password to be hashed
      * @param bool|false $extraSecure Add additional slowness to the hashing technique for security
      *
      * @return string
@@ -196,7 +196,7 @@ class SodiumLibrary
      * Encrypt a message using a key.
      *
      * @param string $message A message in string format
-     * @param string $key A binary hashed key
+     * @param string $key     A binary hashed key
      *
      * @return string
      */
