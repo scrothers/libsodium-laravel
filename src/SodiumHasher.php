@@ -32,7 +32,7 @@ class SodiumHasher implements HasherContract
      */
     public function make($value, array $options = [])
     {
-        # Check if we're making a slow password
+        // Check if we're making a slow password
         if (array_key_exists('slow', $options)) {
             if (is_bool($options['slow'])) {
                 $slowPassword = $options['slow'];

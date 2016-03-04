@@ -70,7 +70,7 @@ class SodiumLibrary
      */
     public static function rawHash($data, $key = null, $length = Sodium\CRYPTO_GENERICHASH_BYTES)
     {
-        # Test to make sure the length is within bounds
+        // Test to make sure the length is within bounds
         if (!($length >= Sodium\CRYPTO_GENERICHASH_BYTES_MIN && $length <= Sodium\CRYPTO_GENERICHASH_BYTES_MAX)) {
             throw new HashLengthException(sprintf('Hash length should be between %s and %s',
                 Sodium\CRYPTO_GENERICHASH_BYTES_MIN,
@@ -78,7 +78,7 @@ class SodiumLibrary
             ));
         }
 
-        # Test if a key is set, if it is, generate a key if true, or use a key if set
+        // Test if a key is set, if it is, generate a key if true, or use a key if set
         if ($key !== null) {
             if ($key === true) {
                 $key = Sodium\randombytes_buf(Sodium\CRYPTO_GENERICHASH_KEYBYTES_MAX);
@@ -137,7 +137,7 @@ class SodiumLibrary
      */
     public static function keyedHash($data, $key, $length = Sodium\CRYPTO_GENERICHASH_BYTES)
     {
-        # Test to make sure the key is a string
+        // Test to make sure the key is a string
         if (!is_string($key)) {
             throw new KeyTypeException('keyedHash expects a string as the key');
         }
@@ -155,7 +155,7 @@ class SodiumLibrary
      */
     public static function hashPassword($plaintext, $extraSecure = false)
     {
-        # Create the password hash
+        // Create the password hash
         if ($extraSecure) {
             $passwordHash = Sodium\crypto_pwhash_scryptsalsa208sha256_str(
                 $plaintext,
@@ -203,10 +203,10 @@ class SodiumLibrary
      */
     public static function encrypt($message, $key)
     {
-        # Generate entropy to encrypt the data
+        // Generate entropy to encrypt the data
         $nonce = self::entropy();
 
-        # Encrypt the message
+        // Encrypt the message
         $messageEncrypted = Sodium\crypto_secretbox($message, $nonce, self::rawHash($key, null, Sodium\CRYPTO_SECRETBOX_KEYBYTES));
 
         return sprintf('%s.%s', self::bin2hex($nonce), self::bin2hex($messageEncrypted));
@@ -278,13 +278,13 @@ class SodiumLibrary
      */
     public static function messageSendEncrypt($receiving_pub, $sending_priv, $message)
     {
-        # Create a keypair to send an encrypted message
+        // Create a keypair to send an encrypted message
         $messageKey = Sodium\crypto_box_keypair_from_secretkey_and_publickey(
             $sending_priv,
             $receiving_pub
         );
 
-        # Create entropy for the message
+        // Create entropy for the message
         $nonce = self::entropy(Sodium\CRYPTO_BOX_NONCEBYTES);
 
         $message = Sodium\crypto_box(
@@ -307,23 +307,23 @@ class SodiumLibrary
      */
     public static function messageReceiveEncrypt($receiving_priv, $sending_pub, $payload)
     {
-        # Create a keypair to receive an encrypted message
+        // Create a keypair to receive an encrypted message
         $messageKey = Sodium\crypto_box_keypair_from_secretkey_and_publickey(
             $receiving_priv,
             $sending_pub
         );
 
-        # Split the payload into it's parts
+        // Split the payload into it's parts
         $ciphertext = explode('.', $payload);
 
-        # Decrypt the message
+        // Decrypt the message
         $plaintext = Sodium\crypto_box_open(
             self::hex2bin($ciphertext[1]),
             self::hex2bin($ciphertext[0]),
             $messageKey
         );
 
-        # Toss an exception if the decryption failed for any reason
+        // Toss an exception if the decryption failed for any reason
         if ($plaintext === false) {
             throw new DecryptionException('Malformed message or invalid MAC');
         }
